@@ -146,8 +146,8 @@ class Bot {
       this.memory.push(new Vec(-dir.x, -dir.y));
 
 
-    /* if we haven't got a target in 20 sec we are probably stuck */
-    if(Date.now() - this.stuckTime > 20000) {
+    /* if we haven't got a target in 10 sec we are probably stuck */
+    if(Date.now() - this.stuckTime > 10000) {
       await this.unstuck();
     } else {
       center.plus(dir).click();
@@ -217,7 +217,7 @@ class Bot {
           /* We wait 250 ms before picking cuz sometimes bot makes
           1-2 blows even if the mob is already dead */
           sleep(250);
-          for(let i = 0; i < 6; i++) {
+          for(let i = 0; i < 8; i++) {
             /* 150ms delay after every picking cuz it might take some
             time for the bot to run up to the loot lying around */
             k.sendKey("f3", delay, 150)
@@ -231,8 +231,8 @@ class Bot {
           /* reset stuckTime */
           bot.stuckTime = Date.now();
           resolve();
-        } else if (Date.now() - bot.stuckTime > 20000 && mobEnd.colorNow == mobEnd.color) {
-          /* if we haven't inflicted any damage in 20 sec, we are probably stuck (or mob is in textures) */
+        } else if (Date.now() - bot.stuckTime > 10000 && mobEnd.colorNow == mobEnd.color) {
+          /* if we haven't inflicted any damage in 10 sec, we are probably stuck (or mob is in textures) */
           console.log(`Bot state: Stuked in textures + mob`);
           k.sendKey(`escape`, delay, delay);;
           bot.unstuck(resolve);
@@ -251,7 +251,7 @@ class Bot {
      console.log(`Bot state: unstucking`);
       this.stuckTime = Date.now();
       this.state = `stuck`;
-      for(let i = 0; i < 3; i++) {
+      for(let i = 0; i < 5; i++) {
         let dir = this.memory.pop();
         if(!dir) {
           console.log(`No memory paths available, find a spot with the mobs`);

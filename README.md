@@ -1,3 +1,6 @@
+
+![This is an image](https://github.com/olesgeras/Lineage2-bot/blob/main/image.jpg)
+
 # Description
 
 * It's a small project, which is an autonomous program simulating a player in Lineage II
@@ -23,7 +26,7 @@ I haven't tested it on other servers and chronicles, so keep that in mind. It mi
 * The bot will open the window of the game automatically and it __has to be open all the time while bot is working__.
 It won't work if the window is in the background, so don't change the focus of the window.
 
-* The bot should be started with his __full__ hp bar. 
+* The bot should be started with his __full__ hp bar.
 
 * __To stop the bot press space bar__.
 

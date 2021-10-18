@@ -1,0 +1,14 @@
+{
+  "author": "olesgeras",
+  "name": "Asterios bot",
+  "description": "An autonomous program that simulates a player in Lineage 2",
+  "version": "1.0.0",
+  "main": "main.js",
+  "dependencies": {
+    "node-gyp": "^8.2.0",
+    "keysender": "^1.6.5",
+    "image-pixels": "^2.2.2",
+    "ini": "^2.0.0"
+  },
+  "license": "ISC"
+}

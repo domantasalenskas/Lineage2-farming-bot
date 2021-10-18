@@ -1,6 +1,3 @@
-
-![This is an image](https://github.com/olesgeras/Lineage2-bot/blob/main/image.jpg)
-
 # Description
 
 * It's a small project, which is an autonomous program simulating a player in Lineage II

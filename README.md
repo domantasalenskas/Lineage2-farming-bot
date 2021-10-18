@@ -3,7 +3,7 @@
 * It's a small project, which is an autonomous program simulating a player in Lineage II
 
 * The bot was tested only on Asterios.tm (a private server of the Lineage II, which uses "__High Five__" version of the game),
-I haven't tested it on other servers and chronicles, so keep that in mind. It might work well on any High Five server (provided the interface position and size are the same).
+I haven't tested it on other servers and chronicles, so keep that in mind. It might work well on any High Five server (provided the interface position and size are the same). If you want to use it with other servers you need to change the name of the window, which you can get from __getAllWindows()__ function.
 
 * The bot was tested only in Windows 10.
 
@@ -22,6 +22,8 @@ I haven't tested it on other servers and chronicles, so keep that in mind. It mi
 
 * The bot will open the window of the game automatically and it __has to be open all the time while bot is working__.
 It won't work if the window is in the background, so don't change the focus of the window.
+
+* The bot should be started with his __full__ hp bar. 
 
 * __To stop the bot press space bar__.
 

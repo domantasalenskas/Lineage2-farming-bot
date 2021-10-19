@@ -146,8 +146,8 @@ class Bot {
       this.memory.push(new Vec(-dir.x, -dir.y));
 
 
-    /* if we haven't got a target in 10 sec we are probably stuck */
-    if(Date.now() - this.stuckTime > 10000) {
+    /* if we haven't got a target in 20 sec we are probably stuck */
+    if(Date.now() - this.stuckTime > 20000) {
       await this.unstuck();
     } else {
       center.plus(dir).click();
@@ -188,7 +188,13 @@ class Bot {
   attack() {
     console.log(`Bot state: Attacking`);
 
-    let {mobEnd, mobStart, botEnd, botStart, skills} = this.ui;
+    let {mobEnd, mobStart, botEnd, botStart} = this.ui;
+
+    let skills = [];
+    for(let skill of Object.keys(playerSkills)) {
+      skills.push(new Buff(skill, Number(playerSkills[skill]) * 1000));
+    }
+
 
     k.sendKey("f2", delay, delay);
     this.stuckTime = Date.now();
@@ -231,8 +237,8 @@ class Bot {
           /* reset stuckTime */
           bot.stuckTime = Date.now();
           resolve();
-        } else if (Date.now() - bot.stuckTime > 10000 && mobEnd.colorNow == mobEnd.color) {
-          /* if we haven't inflicted any damage in 10 sec, we are probably stuck (or mob is in textures) */
+        } else if (Date.now() - bot.stuckTime > 20000 && mobEnd.colorNow == mobEnd.color) {
+          /* if we haven't inflicted any damage in 20 sec, we are probably stuck (or mob is in textures) */
           console.log(`Bot state: Stuked in textures + mob`);
           k.sendKey(`escape`, delay, delay);;
           bot.unstuck(resolve);
@@ -268,7 +274,7 @@ class Bot {
     let {width, height} = display;
 
     let center = new Vec(width / 2, height / 2);
-    let radar = {x: width - 113, y: 67, width: 44, height: 44};
+    let radar = {x: width - 112, y: 67, width: 44, height: 44};
     let hp = {
               mobStart: new Vec(center.x - 65, 28),
               mobEnd: new Vec(center.x + 286, 28),
@@ -284,12 +290,7 @@ class Bot {
       buffs.push(new Buff(buff, Number(playerBuffs[buff]) * 1000));
     }
 
-    let skills = [];
-    for(let skill of Object.keys(playerSkills)) {
-      skills.push(new Buff(skill, Number(playerSkills[skill]) * 1000));
-    }
-
-   let ui = {center, radar, ...hp, buffs, skills};
+   let ui = {center, radar, ...hp, buffs};
    return new Bot(ui);
   }
 }

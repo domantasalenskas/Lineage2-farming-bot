@@ -16,7 +16,19 @@ I haven't tested it on other servers and chronicles(updates), so keep that in mi
 
 * Watch the video to see how the bot works.
 
-* The script should be started from Windows Command Line __with administrator privileges__.
+* To install libraries and start the bot use respective batch files.
+
+If for some reason they don't work open cmd as administrator and install packages manually:
+```
+npm install node-gyp
+npm install keysender
+npm install image-pixels
+npm install ini
+```
+To start the bot use:
+```
+node main.js
+```
 
 * The game should be started in the windowed mode, __it won't work in the fullscreen mode__. To do so press _Alt + Enter_ combination in the game.
 

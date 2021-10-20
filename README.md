@@ -16,9 +16,9 @@ I haven't tested it on other servers and chronicles(updates), so keep that in mi
 
 * Watch the video to see how the bot works.
 
-* To install libraries and start the bot use respective batch files.
+* To install libraries and start the bot use the respective batch files.
 
-If for some reason they don't work open cmd as administrator and install packages manually:
+If for some reason they don't work, open cmd as administrator and install packages manually:
 ```
 npm install node-gyp
 npm install keysender

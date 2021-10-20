@@ -24,8 +24,10 @@ const speed = Number(option.bot.botSpeed);
 const serverName = /Asterios/;
 
 /* Find the window with the given tittle and determine delay of the clicks/keys sending */
+let gameWindow = getAllWindows().find(({title}) => serverName.test(title));
+if(!gameWindow) throw new Error(`The game isn't opened. Open the game first.`);
+const {handle} = gameWindow;
 
-const {handle} = getAllWindows().find(({title}) => serverName.test(title));
 const {workwindow: w, mouse: m, keyboard: k} = new Hardware(handle)
 const display = w.getView();
 
@@ -260,7 +262,7 @@ class Bot {
       for(let i = 0; i < 5; i++) {
         let dir = this.memory.pop();
         if(!dir) {
-          console.log(`No memory paths available, find a spot with the mobs`);
+          throw new Error(`No memory paths available, find a spot with the mobs`)
           process.exit();
         }
         this.move(dir);

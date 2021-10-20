@@ -316,7 +316,6 @@ function relDir({x, y}) {
 }
 
 function resetUi(center, hp) {
-
   /* reset the UI */
 
     k.sendKey([`alt`, `l`], delay, 500);
@@ -324,11 +323,10 @@ function resetUi(center, hp) {
   /* relocate buffs info-panel */
 
   if(option.bot.relocateUiBuffs) {
-    m.moveTo(185, 5, delay);
+    m.moveTo(185, 5);
     m.toggle(true, "left", delay);
-    m.move(0, 95, delay);
-    m.move(-180, 0, delay);
-    m.toggle(false, "left");
+    m.move(210, 0, delay);
+    m.toggle(false, "left", delay);
   }
 
   /* make bot's and mob's hp wider */
@@ -337,11 +335,11 @@ function resetUi(center, hp) {
       sleep(500);
       m.moveTo(177, 60, delay);
       m.toggle(true, "left");
-      m.moveTo(177 + 250, 60, delay);
+      m.moveTo(177 + 210, 60, delay);
       m.toggle(false, "left");
       m.moveTo(center.x + 93, 30, delay);
       m.toggle(true, "left");
-      m.moveTo(center.x + 93 + 250, 30, delay);
+      m.moveTo(center.x + 93 + 210, 30, delay);
       m.toggle(false, "left");
 
   /* get hp colors */

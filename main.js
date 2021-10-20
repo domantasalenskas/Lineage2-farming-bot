@@ -18,7 +18,7 @@ const playerSkills = option.skills
 /* The speed of the bot determines when it should analyze radar again after
 reaching a point of destination, it should be the same as the speed of your character */
 
-const speed = Number(option.bot.speed);
+const speed = Number(option.bot.botSpeed);
 
 /* find the name of the window by using getAllWindows function and change this regExp */
 const serverName = /Asterios/;
@@ -31,7 +31,7 @@ const display = w.getView();
 
 w.setForeground();
 
-const delay = Number(option.bot.delay);
+const delay = Number(option.bot.botDelay);
 const dps = speed * 0.60;
 
 m.buttonTogglerDelay = delay;
@@ -199,7 +199,7 @@ class Bot {
     k.sendKey("f2", delay, delay);
     this.stuckTime = Date.now();
 
-    if(option.bot.spoil) {
+    if(option.bot.botSpoil) {
       k.sendKey(option.spoil.spoilKey, delay, delay);
     }
 
@@ -229,7 +229,7 @@ class Bot {
             k.sendKey("f3", delay, 150)
           }
 
-          if(option.bot.spoil) {
+          if(option.bot.botSpoil) {
             k.sendKey(option.spoil.sweepKey, delay, 250);
           }
 

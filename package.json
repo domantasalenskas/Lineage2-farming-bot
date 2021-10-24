@@ -5,10 +5,9 @@
   "version": "1.0.0",
   "main": "main.js",
   "dependencies": {
-    "node-gyp": "^8.2.0",
-    "keysender": "^1.6.5",
     "image-pixels": "^2.2.2",
-    "ini": "^2.0.0"
+    "ini": "^2.0.0",
+    "keysender": "^1.6.5"
   },
   "license": "ISC"
 }

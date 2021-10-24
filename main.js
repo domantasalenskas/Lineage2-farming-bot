@@ -276,7 +276,7 @@ class Bot {
     let {width, height} = display;
 
     let center = new Vec(width / 2, height / 2);
-    let radar = {x: width - 112, y: 67, width: 44, height: 44};
+    let radar = {x: width - 113, y: 67, width: 44, height: 44};
     let hp = {
               mobStart: new Vec(center.x - 65, 28),
               mobEnd: new Vec(center.x + 286, 28),

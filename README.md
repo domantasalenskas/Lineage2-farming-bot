@@ -1,3 +1,7 @@
+# Video
+
+https://www.youtube.com/watch?v=YCO2Kmuw7ds&ab_channel=olesgeras
+
 # Description
 
 * It's a small project, which is an autonomous program simulating a player in Lineage II
@@ -11,6 +15,14 @@ I haven't tested it on other servers and chronicles(updates), so keep that in mi
 
 * It's a melee bot, meaning that it works well mostly for the melee classes in the game (The range classes will attack only from */targetnext* range and won't be able to pick up the loot).
 
+# Requirements
+
+- Node
+- Packages:
+  - node-gyp
+  - keysender
+  - image-pixels
+  - ini
 
 # Before starting the script
 
@@ -20,7 +32,7 @@ I haven't tested it on other servers and chronicles(updates), so keep that in mi
 
 If for some reason they don't work, open cmd as administrator and install packages manually:
 ```
-npm install node-gyp
+npm install -g node-gyp
 npm install keysender
 npm install image-pixels
 npm install ini
@@ -38,16 +50,3 @@ It won't work if the window is in the background, so don't change the focus of t
 * The bot should be started with full HP (it saves the colors of HP bars at the moment of starting).
 
 * To stop the bot press __space bar__.
-
-# Requirements
-
-- Node
-- Packages:
-  - node-gyp
-  - keysender
-  - image-pixels
-  - ini
-
-# Video
-
-https://www.youtube.com/watch?v=YCO2Kmuw7ds&ab_channel=olesgeras

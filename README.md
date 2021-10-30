@@ -42,7 +42,7 @@ To start the bot use:
 node main.js
 ```
 
-* The game should be started in the windowed mode, __it won't work in the fullscreen mode__. To do so press _Alt + Enter_ combination in the game.
+* The game should be started both __as administrator__ and in the windowed mode, __it won't work in the fullscreen mode__. To do so press _Alt + Enter_ combination in the game.
 
 * The bot will open the window of the game automatically and it __has to be open all the time while the bot is working__.
 It won't work if the window is in the background, so don't change the focus of the window.

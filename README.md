@@ -19,10 +19,10 @@ I haven't tested it on other servers and chronicles(updates), so keep that in mi
 
 - Node
 - Packages:
-  - node-gyp
-  - keysender
-  - image-pixels
-  - ini
+  - node-gyp: https://github.com/nodejs/node-gyp
+  - keysender https://github.com/Krombik/keysender
+  - image-pixels https://github.com/dy/image-pixels
+  - ini https://github.com/isaacs/ini
 
 # Before starting the script
 

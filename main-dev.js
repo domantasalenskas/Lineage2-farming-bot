@@ -379,7 +379,7 @@ let healthMovedCounter = 0;
 let healthStayCounter = 0;
 let reelingInProgress = false;
 
-let lastActionTimestamp = Date.now();
+
 
 function startFishing() {
   console.log('start fishing...');
@@ -388,29 +388,9 @@ function startFishing() {
 }
 
 function reelFish() {
-  if (healthStayCounter > 5) {
-    healthStayCounter = 0;
-    healthMovedCounter = 0;
-    lastKnownHealth = null;
-    console.log('SEND f2');
-    k.sendKey(`f2`, 1, 1);
-    lastActionTimestamp = Date.now();
-    sleep(2050);
-  }
-
-  if (healthMovedCounter > 0) {
-    healthStayCounter = 0;
-    healthMovedCounter = 0;
-    lastKnownHealth = null;
-    console.log('SEND f3');
-    k.sendKey(`f3`, 1, 1);
-    lastActionTimestamp = Date.now();
-    sleep(2050);
-  }
   color = w.colorAt(reelingVec.x, reelingVec.y);
   let clockColor = w.colorAt(clockVec.x, clockVec.y);
-  //clockColor === 'dedbde' || clockColor === '8f8e68'
-  if (colorDistance('dedbde', clockColor) < 5) {
+  if (clockColor === 'dedbde' || clockColor === '8f8e68') {
     if (!reelingInProgress) {
       reelingInProgress = true;
       sleep(100);
@@ -418,9 +398,11 @@ function reelFish() {
     lastColor = color;
 
     let health = getBarPercentage();
-    if (health !== null) {
+    
+    if (health !== null && health !== 0) {
       if (lastKnownHealth !== null) {
         if (health > lastKnownHealth) {
+          console.log(lastKnownHealth, health);
           lastKnownHealth = health;
           console.log('Health increased!')
           healthMovedCounter++;
@@ -433,22 +415,40 @@ function reelFish() {
     } else {
       console.log('health null :(');
     }
-
-    if (lastKnownHealth === null && health !== null && health !== 0) {
-      lastKnownHealth = health;
+    if (healthStayCounter > 2) {
+      healthStayCounter = 0;
+      healthMovedCounter = 0;
+      lastKnownHealth = null;
+      k.sendKey(`f2`, delay, delay);
+      sleep(2300);
+    } else if (healthMovedCounter > 0) {
+        healthStayCounter = 0;
+        healthMovedCounter = 0;
+        lastKnownHealth = null;
+        k.sendKey(`f3`, delay, delay);
+        sleep(2300);
     } else {
-      sleep(200);
+      if (lastKnownHealth === null && health !== 0 && health !== null) {
+        console.log('Last know health from NULL to', health);
+        lastKnownHealth = health;
+      }
+      if (health !== null && health !== 0) {
+        sleep(250);
+      } else {
+        sleep(25);
+      }
     }
+
+   
   } else if (reelingInProgress) {
-    console.log('FISHING IS OVER!!', clockColor, colorDistance('dedbde', clockColor));
-    
     reelingInProgress = false;
     fishingActive = false;
     lastKnownHealth = null;
     healthStayCounter = 0;
     healthMovedCounter = 0;
+    sleep(500);
     k.sendKey(`f4`, delay, delay);
-    sleep(20);
+    sleep(100);
     k.sendKey(`f5`, delay, delay);
     sleep(100);
   }
@@ -463,19 +463,23 @@ function getBarPercentage() {
     for (let i = -105; i <= 115; i = i + 5) {
       let color = w.colorAt(reelingVec.x + i, reelingVec.y);
       const valueHp = colorDistance('00689f', color);
-      total++;
-      // console.log(valueHp, valueEmpty);
+      const valueEmpty = colorDistance('260c0b', color);
+      // console.log(color, valueHp, valueEmpty);
       if (valueHp >= 0 && valueHp <= 10) {
+        total++;
         health++;
+      } else {
+        total++;
       }
+      // sleep(100);
     }
+    // sleep(1000)
+    // console.log('===');
     toReturArray.push(Math.floor(health / total * 100));
-    return toReturArray[0];
-    sleep(3);
   }
 
   const allEqual = arr => arr.every( v => v === arr[0] )
-  console.log(toReturArray)
+  // console.log(toReturArray)
   if (allEqual(toReturArray)) {
     return toReturArray[0];
   }
@@ -525,12 +529,6 @@ async function runBot() {
       startFishing();
     }
     reelFish();
-    if (lastActionTimestamp + 60000 < Date.now()) {
-      // Reset fishing as it seems its afk
-      lastActionTimestamp = Date.now();
-      fishingActive = false;
-      console.log('Cancel fishing')
-    }
     
   }
   /* finish main loop */
